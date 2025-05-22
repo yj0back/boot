@@ -2,7 +2,9 @@ package co.kr.boot.board.controller;
 
 import co.kr.boot.board.service.BoardService;
 import co.kr.boot.board.vo.BoardVo;
+import co.kr.boot.paging.PagingVo;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,8 @@ public class BoardController {
     }
 
     @GetMapping("/board/list")
-    public ResponseEntity<List<BoardVo>> list() {;
-        return new ResponseEntity<List<BoardVo>>(boardService.list(), HttpStatus.OK);
+    public ResponseEntity<PagingVo> list(BoardVo boardVo, @Param("paging") PagingVo pagingVo) {;
+        PagingVo result = boardService.list(boardVo, pagingVo);
+        return ResponseEntity.ok(result);
     }
 }

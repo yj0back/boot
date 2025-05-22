@@ -3,6 +3,7 @@ package co.kr.boot.board.service.impl;
 import co.kr.boot.board.mapper.BoardMapper;
 import co.kr.boot.board.service.BoardService;
 import co.kr.boot.board.vo.BoardVo;
+import co.kr.boot.paging.PagingVo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,10 @@ public class BoardServiceImpl implements BoardService {
     private BoardMapper boardMapper;
 
     @Override
-    public List<BoardVo> list() {
-        return boardMapper.list();
+    public PagingVo list(BoardVo boardVo, PagingVo pagingVo) {
+        int cnt = boardMapper.cnt();
+        List<BoardVo> result = boardMapper.list(boardVo, pagingVo);
+        pagingVo.createPaging(cnt, result);
+    return pagingVo;
     }
 }

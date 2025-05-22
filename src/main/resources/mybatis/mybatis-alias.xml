@@ -4,5 +4,6 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="boardVo" type="co.kr.boot.board.vo.BoardVo"/>
+        <typeAlias alias="pagingVo" type="co.kr.boot.paging.PagingVo"/>
     </typeAliases>
 </configuration>

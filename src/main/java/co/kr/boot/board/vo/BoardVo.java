@@ -1,9 +1,13 @@
 package co.kr.boot.board.vo;
 
-import lombok.Data;
+import co.kr.boot.paging.PagingVo;
+import lombok.*;
 
-@Data
-public class BoardVo {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class BoardVo extends PagingVo {
     String id;
     String content;
 }

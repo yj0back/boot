@@ -16,10 +16,10 @@ function loadList(input) {
         type: "get",
         dataType: "json",
         data: {
-            currentPage: page,
+            currentPage: page
         },
         success: function (data) {
-            paging(data);
+            document.getElementById("tbody").innerHTML = "";
             data.data.forEach((data, index) => {
                    const tr = document.createElement("tr");
                    tr.innerHTML =
@@ -29,21 +29,23 @@ function loadList(input) {
                     </tr>`;
                     document.getElementById("tbody").appendChild(tr);
             })
+            paging(data);
+
         }
     })
 }
 
 function paging(data) {
+    document.getElementById("paging").innerHTML = "";
     for(i=1; i<=data.totalPage; i++) {
         const span = document.createElement("span");
-        span.innerHTML = `<a href="">${i}</a>`;
+        span.innerHTML = `<a href="#">${i}</a>`;
         document.getElementById("paging").appendChild(span);
     }
-
-    document.getElementById("paging").addEventListener('click', (evt) => {
-        const pageNum = evt.target.textContent;
-        loadList(pageNum);
-    })
+    document.getElementById("paging").addEventListener('click', () => {
+        const clickedElement = event.target;
+        loadList(clickedElement.innerHTML);
+    }, {once: true});
 }
 
 init();

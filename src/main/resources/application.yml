@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8083
 
 spring:
   mvc:
@@ -16,6 +16,18 @@ spring:
       jdbc:log4jdbc:postgresql://211.170.81.110:3582/postgres
     username: postgres
     password: 1234
+
+    jpa-datasource:
+      jdbc-url: jdbc:log4jdbc:postgresql://211.170.81.110:3582/postgres
+      password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml

@@ -2,9 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co.kr.boot.board.mapper.BoardMapper">
     <select id="list" resultType="boardVo">
-        select
-            user_id as id,
-            contents as content
-        from board
+        SELECT
+            id AS id,
+            content AS content
+        FROM board
+        OFFSET #{pagingVo.offset}::INTEGER
+        LIMIT #{pagingVo.limit}::INTEGER
+    </select>
+
+    <select id="cnt" resultType="int">
+        SELECT COUNT(content)
+        FROM board
     </select>
 </mapper>
